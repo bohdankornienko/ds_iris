@@ -7,6 +7,7 @@ class_ids = {'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2}
 
 
 class DataSet:
+    """Hello"""
     def __init__(self, data_set_path):
         if not os.path.exists(data_set_path):
             RuntimeError('Invalid path to data set: ' + data_set_path)
@@ -20,6 +21,15 @@ class DataSet:
         return self._is_end_of_data
 
     def next_batch(self, batch_size=100):
+        """ Get next batch from data set.
+
+        [info]: It has a bug. If one will set batch size exactly the amount of lines in file on the next call of this
+        method he will get empty lists.
+
+        :param batch_size:
+        :return: <np array of features with size N x 4>, <labels with size of N>.
+                 Where N <= batch_size depending on available records in file.
+        """
         self._request_new_reader()
 
         features = []

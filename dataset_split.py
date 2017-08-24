@@ -45,7 +45,5 @@ def main():
     data = read_whole_data_set()
     write_split(data=data)
 
-    # pprint(data)
-
 if __name__ == '__main__':
     main()
